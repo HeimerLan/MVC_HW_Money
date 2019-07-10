@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjMVC_HW_Money.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,35 @@ namespace prjMVC_HW_Money.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Random Random = new Random();
+            KeepingAccountViewModel KeepingAccount = null;
+            var KeepingAccountResult = new List<KeepingAccountViewModel>();
+
+            for (int i = 1; i <= 100; i++)
+            {
+                //隨機產生數值1或2
+                int RandomType = Random.Next(1, 3);
+
+                //隨機產生金額，50~5000之間
+                int RandomAmount = Random.Next(50, 5001);
+
+                //從2019/01/01開始100天
+                DateTime _Date = new DateTime(2018, 12, 31);
+
+                //產生的資料暫存於Model中，在Index裡依序提取出來列表
+                KeepingAccount = new KeepingAccountViewModel
+                {
+                    No = i,
+                    TypeNum = RandomType,
+                    Date = _Date.AddDays(i).ToString("yyyy-MM-dd"),
+                    Amount = RandomAmount.ToString("N0")
+                };
+
+                KeepingAccountResult.Add(KeepingAccount);
+
+            }
+
+            return View(KeepingAccountResult);
         }
 
         public ActionResult About()
@@ -26,5 +55,6 @@ namespace prjMVC_HW_Money.Controllers
 
             return View();
         }
+
     }
 }
