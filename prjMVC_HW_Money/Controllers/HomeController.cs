@@ -19,6 +19,13 @@ namespace prjMVC_HW_Money.Controllers
             {
                 //隨機產生數值1或2
                 int RandomType = Random.Next(1, 3);
+                String TempType = "";
+
+                //1為收入，2為支出
+                if (RandomType == 1)
+                    TempType = "收入";
+                else
+                    TempType = "支出";
 
                 //隨機產生金額，50~5000之間
                 int RandomAmount = Random.Next(50, 5001);
@@ -30,7 +37,7 @@ namespace prjMVC_HW_Money.Controllers
                 KeepingAccount = new KeepingAccountViewModel
                 {
                     No = i,
-                    TypeNum = RandomType,
+                    Type = TempType,
                     Date = _Date.AddDays(i).ToString("yyyy-MM-dd"),
                     Amount = RandomAmount.ToString("N0")
                 };
