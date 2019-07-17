@@ -1,4 +1,4 @@
-﻿@model List<prjMVC_HW_Money.Models.KeepingAccountViewModel>
+﻿@model List<prjMVC_HW_Money.Models.ViewModel.KeepingAccountViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -30,7 +30,7 @@
             <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
         </div>
     </div>*@
-
+<br /><br />
 @*將表格輸入提取為PartialView*@
 @Html.Partial("_MoneyTemplate", Model)
 

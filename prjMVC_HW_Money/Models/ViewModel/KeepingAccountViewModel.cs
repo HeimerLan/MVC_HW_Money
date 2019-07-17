@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace prjMVC_HW_Money.Models
+namespace prjMVC_HW_Money.Models.ViewModel
 {
     public class KeepingAccountViewModel
     {
