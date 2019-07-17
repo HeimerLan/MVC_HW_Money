@@ -1,60 +1,28 @@
-﻿using prjMVC_HW_Money.Models.ViewModel;
-using prjMVC_HW_Money.Models.DataModel;
-using prjMVC_HW_Money.Service;
+﻿using prjMVC_HW_Money.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace prjMVC_HW_Money.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        //建立KeepingAccountService的物件並調用方法，取得List
+        public ActionResult Index(int Page = 1)
         {
-            //Random Random = new Random();
-            //KeepingAccountViewModel KeepingAccount = null;
-            //var KeepingAccountResult = new List<KeepingAccountViewModel>();
-
-            //for (int i = 1; i <= 100; i++)
-            //{
-            //    //隨機產生數值1或2
-            //    int RandomType = Random.Next(1, 3);
-            //    String TempType = "";
-
-            //    //1為收入，2為支出
-            //    if (RandomType == 1)
-            //        TempType = "收入";
-            //    else
-            //        TempType = "支出";
-
-            //    //隨機產生金額，50~5000之間
-            //    int RandomAmount = Random.Next(50, 5001);
-
-            //    //從2019/01/01開始100天
-            //    DateTime _Date = new DateTime(2018, 12, 31);
-
-            //    //產生的資料暫存於Model中，在Index裡依序提取出來列表
-            //    KeepingAccount = new KeepingAccountViewModel
-            //    {
-            //        No = i,
-            //        Type = TempType,
-            //        Date = _Date.AddDays(i).ToString("yyyy-MM-dd"),
-            //        Amount = RandomAmount.ToString("N0")
-            //    };
-
-            //    KeepingAccountResult.Add(KeepingAccount);
-
-            //}
-
-            //return View(KeepingAccountResult);
-            //AccountBook db = new AccountBook();
-
             KeepingAccountService KeepingAccount = new KeepingAccountService();
-            var ShowList = KeepingAccount.GetAllData();
-            return View(ShowList);
 
+            var ShowList = KeepingAccount.GetAllData();
+
+            //使用PagedList
+            int PageSize = 100;
+            int PageCurrent = Page < 1 ? 1 : Page;
+            var PagedList = ShowList.ToPagedList(PageCurrent,PageSize);
+
+            return View(PagedList);
         }
 
         public ActionResult About()

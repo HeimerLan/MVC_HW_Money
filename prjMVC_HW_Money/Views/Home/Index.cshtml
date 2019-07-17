@@ -1,4 +1,6 @@
-﻿@model List<prjMVC_HW_Money.Models.ViewModel.KeepingAccountViewModel>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<prjMVC_HW_Money.Models.ViewModel.KeepingAccountViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -55,5 +57,6 @@
                 </tr>
             }
         </table>
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
     </div>
 </div>

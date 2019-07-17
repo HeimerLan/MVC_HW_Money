@@ -7,6 +7,7 @@ using prjMVC_HW_Money.Models.ViewModel;
 
 namespace prjMVC_HW_Money.Service
 {
+    //暫時未做Interface
     public class KeepingAccountService
     {
         AccountBookRepository _GetAllData = new AccountBookRepository();
@@ -22,6 +23,7 @@ namespace prjMVC_HW_Money.Service
 
             for (int i = 0; i < len; i++)
             {
+                //因ViewModel的No原始設計為int，因此Guid類型的Id不與其他資料一起存在ViewModel，之後會再處理
                 Guid Id = result[i].Id;
                 String _Id = result[i].Id.ToString();
 
@@ -33,9 +35,11 @@ namespace prjMVC_HW_Money.Service
                 else
                     TypeStr = "支出";
 
+                //轉換為文字
                 DateTime date = result[i].Dateee;
                 String _date = date.ToString("yyyy-MM-dd");
 
+                //轉換為文字，並且千分位處理
                 int amount = result[i].Amounttt;
                 String _amount = amount.ToString("N0");
 
