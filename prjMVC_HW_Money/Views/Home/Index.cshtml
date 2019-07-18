@@ -45,15 +45,18 @@
                 <th>類別</th>
                 <th>日期</th>
                 <th>金額</th>
+                <th>#</th>
             </tr>
 
             @foreach (var item in Model)
             {
+                String Page = "Delete/"+@item.No.ToString();
                 <tr>
                     <td>@item.No</td>
                     <td>@item.Type</td>
                     <td>@item.Date</td>
                     <td>@item.Amount</td>
+                    <td>@Html.ActionLink("刪除", Page)</td>
                 </tr>
             }
         </table>

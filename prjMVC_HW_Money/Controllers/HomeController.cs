@@ -39,5 +39,22 @@ namespace prjMVC_HW_Money.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(String category, String date, int money, String description)
+        {
+            KeepingAccountService KeepingAccount = new KeepingAccountService();
+            KeepingAccount.Create(category, date, money, description);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(String Page)
+        {
+            int Order = Convert.ToInt32(Page)-1;
+            //System.Diagnostics.Debug.WriteLine("order================="+Page);
+            KeepingAccountService KeepingAccount = new KeepingAccountService();
+            KeepingAccount.Delete(Order);
+            return RedirectToAction("Index");
+        }
+
     }
 }

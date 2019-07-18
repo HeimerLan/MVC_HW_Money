@@ -17,5 +17,32 @@ namespace prjMVC_HW_Money.Repository
             return Data;
         }
 
+        public List<AccountBook> GetAllGuid()
+        {
+            var Data = db.AccountBook.Select(Id => Id).OrderBy(m => m.Dateee).ToList();
+            return Data;
+        }
+
+        public void Create(Guid Id, int Category, DateTime Date, int Amount, String Remark)
+        {
+            AccountBook Data = new AccountBook
+            {
+                Id = Id,
+                Categoryyy = Category,
+                Dateee = Date,
+                Amounttt = Amount,
+                Remarkkk = Remark
+            };
+            db.AccountBook.Add(Data);
+            db.SaveChanges();
+        }
+
+        public void Delete(Guid Id)
+        {
+            var Data = db.AccountBook.Where(m => m.Id == Id).FirstOrDefault();
+            db.AccountBook.Remove(Data);
+            db.SaveChanges();
+        }
+
     }
 }
